@@ -7,18 +7,24 @@ public class User {
     private String password;
 
 
-    protected User(String firstName, String lastName, String email, String mobilePhone, String phone, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.mobilePhone = mobilePhone;
-        this.phone = phone;
-        this.password = password;
+    public User(String firstName, String lastName, String email, String mobilePhone, String phone, String password) throws Exception{
+        if (isValidMail(email) && isValidPass(password)) {
+
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.mobilePhone = mobilePhone;
+            this.phone = phone;
+            this.password = password;
+        }else throw new Exception("Invalid email or password");
     }
 
-    private User(String email, String password) {
+    public User(String email, String password) throws Exception{
+
+        if (isValidMail(email) && isValidPass(password)){
         this.email = email;
-        this.password = password;
+        this.password = password;}
+        else throw new Exception("invalid email or password");
     }
 
     public String getFirstName() {
@@ -78,15 +84,6 @@ public class User {
         return pass.length() > 7 && pass.length() < 17;
     }
 
-    public static User createUser(String email, String password){
-        if (isValidMail(email) && isValidPass(password)) return new User(email, password);
 
-        return null;
-    }
 
-    public static User createUser(String firstName, String lastName, String email, String mobilePhone, String phone, String password){
-        if (isValidMail(email) && isValidPass(password)) return new User(firstName, lastName, email, mobilePhone, phone, password);
-
-        return null;
-    }
 }

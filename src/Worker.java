@@ -3,7 +3,7 @@ public class Worker extends User {
     private int workbalance;
 
 
-    public Worker(double salary, int workbalance, User user) {
+    public Worker(double salary, int workbalance, User user) throws Exception {
         super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getMobilePhone(), user.getPhone(), user.getPassword());
         this.salary = salary;
         this.workbalance = workbalance;
